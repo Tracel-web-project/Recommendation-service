@@ -1,0 +1,5 @@
+Flask
+boto3
+langchain
+langchain-aws
+flask-cors
