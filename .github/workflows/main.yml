@@ -6,12 +6,12 @@ on:
       - main
 
 env:
-  SERVICE: recommendation-service
-  IMAGE_SHA: ${{ secrets.DOCKERHUB_USERNAME }}/recommendation-service:${{ github.sha }}
-  IMAGE_LATEST: ${{ secrets.DOCKERHUB_USERNAME }}/recommendation-service:latest
+  SERVICE: recommend-service
+  IMAGE_SHA: ${{ secrets.DOCKERHUB_USERNAME }}/recommend-service:${{ github.sha }}
+  IMAGE_LATEST: ${{ secrets.DOCKERHUB_USERNAME }}/recommend-service:latest
   GITOPS_REPO: Tracel-web-project/Travel-gitOps
-  GITOPS_DEPLOYMENT_PATH: base/recommendation-service
-  GITOPS_BRANCH_PREFIX: ci/update-recommendation-service
+  GITOPS_DEPLOYMENT_PATH: base/recommend-service
+  GITOPS_BRANCH_PREFIX: ci/update-recommend-service
 
 jobs:
   build:
