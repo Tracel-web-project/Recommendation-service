@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendation-backend
+  labels:
+    app: recommendation-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: recommendation-backend
+  template:
+    metadata:
+      labels:
+        app: recommendation-backend
+    spec:
+      containers:
+        - name: recommendation-backend
+          image: sheethalshobi/project-recommendation-backend:latest
+          ports:
+            - containerPort: 5005
+          env:
+            - name: MONGO_URI
+              value: "mongodb://flight-db-0.flight-db:27017/recommendation"
+          envFrom:
+            - secretRef:
+                name: aws-secret
