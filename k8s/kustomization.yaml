@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - recommendation-deployment.yaml
+  - recommend-service-policy.yaml
+  - recommendation-service.yaml
+
+images:
+  - name: sheethalshobi/recommendation-service
+    newName: sheethalshobi/recommendation-service
+    newTag: PLACEHOLDER
