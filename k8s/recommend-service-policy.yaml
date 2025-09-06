@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: recommendation-backend-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: recommendation-backend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        # allow frontend pods
+        - podSelector:
+            matchLabels:
+              app: travel-frontend
+        # allow NGINX Ingress controller pods
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 5005
+  egress:
+    # allow DNS resolution
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # allow outbound HTTPS to Bedrock or any external service
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 443
