@@ -10,7 +10,7 @@ env:
   IMAGE_SHA: ${{ secrets.DOCKERHUB_USERNAME }}/recommend-service:${{ github.sha }}
   IMAGE_LATEST: ${{ secrets.DOCKERHUB_USERNAME }}/recommend-service:latest
   GITOPS_REPO: Tracel-web-project/Travel-gitOps
-  GITOPS_DEPLOYMENT_PATH: base/recommend-service
+  GITOPS_DEPLOYMENT_PATH: apps/dev/recommend
   GITOPS_BRANCH_PREFIX: ci/update-recommend-service
 
 jobs:
